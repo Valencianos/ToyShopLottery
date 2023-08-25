@@ -76,8 +76,10 @@ public class Lottery {
 
     public static void saveToFile(String filename, ArrayList<Toys> winners) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            int k = 0;
             for (Toys t: winners) {
-                writer.write(t.toString());
+                k += 1;
+                writer.write("Round " + k + ": your prize is " + t.getName());
                 writer.newLine();
             }
         } catch (IOException e) {

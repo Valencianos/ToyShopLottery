@@ -16,15 +16,12 @@ public class Launch {
         Lottery.put("7 Clock 8 0.08");
         Lottery.put("8 Coupon 30 0.30");
 
-        int k = 0;
         ArrayList<Toys> winners = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             int wonToyId = Lottery.getToyId();
             Toys wonToy = Lottery.getToyById(wonToyId);
             assert wonToy != null;
             if (Lottery.checkAvailable(wonToy)){
-                k += 1;
-                System.out.println("Round " + k + ": your prize is " + wonToy.getName());
                 winners.add(wonToy);
             }
         }
