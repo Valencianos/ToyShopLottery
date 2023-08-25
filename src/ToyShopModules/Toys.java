@@ -13,7 +13,7 @@ public class Toys {
     }
 
     public String toString(){
-        return "id = " + id + ", name = " + name + ", quantity = " + qty + ", frequency = " + freq;
+        return "name = " + name + ", quantity = " + qty;
     }
     public String getName(){
         return name;
@@ -24,19 +24,5 @@ public class Toys {
     public int getQty(){
         return qty;
         }
-    public float getFreq(){
-        return freq;
-    }
-    public void setId(int id){
-        this.id = id;
-    }
-    public void setName(String name){
-        this.name = name;
-    }
-    public void setQty(int qty){
-        this.qty = qty;
-    }
-    public void setFreq(float freq){
-        this.freq = freq;
-    }
+    public float getFreq(){ return freq; }
 }

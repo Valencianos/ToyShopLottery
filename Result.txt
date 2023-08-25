@@ -1,8 +1,0 @@
-Lego 5 0.04
-Lego 4 0.06
-Lego 7 0.08
-Lego 2 0.15
-Lego 3 0.07
-Lego 6 0.2
-Lego 1 0.1
-Lego 8 0.3

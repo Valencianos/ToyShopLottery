@@ -7,8 +7,8 @@ import java.util.*;
 
 public class Lottery {
     private static PriorityQueue<Toys> sequence;
-    private static int[] toyId;
-    private static float[] toyFreq;
+    private static String[] toyName;
+    private static int[] toyQty;
 
     public Lottery() {
         sequence = new PriorityQueue<>((t1, t2) -> Float.compare(t1.getFreq(), t2.getFreq()));
@@ -25,27 +25,36 @@ public class Lottery {
         sequence.add(toy);
 
         int queueSize = sequence.size();
-        toyId = new int[queueSize];
-        toyFreq = new float[queueSize];
+        toyName = new String[queueSize];
+        toyQty = new int[queueSize];
 
         int i = 0;
         for (Toys t : sequence) {
-            toyId[i] = t.getId();
-            toyFreq[i] = t.getFreq();
+            toyName[i] = t.getName();
+            toyQty[i] = t.getQty();
             i++;
         }
     }
 
     public static int getToyId() {
         Random random = new Random();
-        double randomNumber = random.nextDouble();
-
-        if (randomNumber <= 0.2) {
+        double rand = random.nextDouble();
+        if (rand <= 0.1) {
             return 1;
-        } else if (randomNumber <= 0.4) {
+        } else if (rand <= 0.25) {
             return 2;
-        } else {
+        } else if (rand <= 0.32) {
             return 3;
+        } else if (rand <= 0.38) {
+            return 4;
+        } else if (rand <= 0.42) {
+            return 5;
+        } else if (rand <= 0.62) {
+            return 6;
+        } else if (rand <= 0.70) {
+            return 7;
+        } else {
+            return 8;
         }
     }
 
@@ -58,14 +67,18 @@ public class Lottery {
         return null;
     }
 
-    public void addToy(Toys toy) {
-        sequence.add(toy);
+    public static boolean checkAvailable (Toys toy){
+        if (toy.getQty() > 0){
+            toy.qty -= 1;
+            return true;
+        }
+        return false;
     }
 
     public static void saveToFile(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             for (int i = 0; i < sequence.size(); i++) {
-                writer.write(sequence.peek().getName() + " " + toyId[i] + " " + toyFreq[i]);
+                writer.write(toyName[i] + ": " + toyQty[i] + " pc");
                 writer.newLine();
             }
         } catch (IOException e) {
