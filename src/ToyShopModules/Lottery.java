@@ -15,18 +15,17 @@ public class Lottery {
     }
 
     public static void put(String input) {
-        String[] parts = input.split(" ");
-        int id = Integer.parseInt(parts[0]);
-        String name = parts[1];
-        int qty = Integer.parseInt(parts[2]);
-        float freq = Float.parseFloat(parts[3]);
+        String[] enter = input.split(" ");
+        int id = Integer.parseInt(enter[0]);
+        String name = enter[1];
+        int qty = Integer.parseInt(enter[2]);
+        float freq = Float.parseFloat(enter[3]);
 
         Toys toy = new Toys(id, name, qty, freq);
         sequence.add(toy);
 
-        int queueSize = sequence.size();
-        toyName = new String[queueSize];
-        toyQty = new int[queueSize];
+        toyName = new String[sequence.size()];
+        toyQty = new int[sequence.size()];
 
         int i = 0;
         for (Toys t : sequence) {
@@ -75,10 +74,10 @@ public class Lottery {
         return false;
     }
 
-    public static void saveToFile(String filename) {
+    public static void saveToFile(String filename, ArrayList<Toys> winners) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            for (int i = 0; i < sequence.size(); i++) {
-                writer.write(toyName[i] + ": " + toyQty[i] + " pc");
+            for (Toys t: winners) {
+                writer.write(t.toString());
                 writer.newLine();
             }
         } catch (IOException e) {

@@ -13,7 +13,7 @@ public class Toys {
     }
 
     public String toString(){
-        return "name = " + name + ", quantity = " + qty;
+        return "Your prize: name = " + name;
     }
     public String getName(){
         return name;
@@ -24,5 +24,5 @@ public class Toys {
     public int getQty(){
         return qty;
         }
-    public float getFreq(){ return freq; }
+    public float getFreq() { return freq; }
 }

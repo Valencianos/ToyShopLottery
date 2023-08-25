@@ -1,6 +1,8 @@
 package ToyShopModules;
 
 
+import java.util.ArrayList;
+
 public class Launch {
     public static void main(String[] args) {
         new Lottery();
@@ -15,16 +17,17 @@ public class Launch {
         Lottery.put("8 Coupon 30 0.30");
 
         int k = 0;
+        ArrayList<Toys> winners = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             int wonToyId = Lottery.getToyId();
             Toys wonToy = Lottery.getToyById(wonToyId);
-            if (wonToy != null) {
-                if (Lottery.checkAvailable(wonToy)){
-                    k += 1;
-                    System.out.println("Round " + k + ": your prize is " + wonToy.getName());
-                }
+            assert wonToy != null;
+            if (Lottery.checkAvailable(wonToy)){
+                k += 1;
+                System.out.println("Round " + k + ": your prize is " + wonToy.getName());
+                winners.add(wonToy);
             }
         }
-        Lottery.saveToFile("Result.txt");
+        Lottery.saveToFile("Result.txt", winners);
     }
 }
