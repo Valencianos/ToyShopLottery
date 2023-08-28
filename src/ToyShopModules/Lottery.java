@@ -5,12 +5,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class Lottery {
+public final class Lottery {
     private static PriorityQueue<Toys> sequence;
     private static String[] toyName;
     private static int[] toyQty;
 
-    public Lottery() {
+    Lottery() {
         sequence = new PriorityQueue<>((t1, t2) -> Float.compare(t1.getFreq(), t2.getFreq()));
     }
 
@@ -24,15 +24,6 @@ public class Lottery {
         Toys toy = new Toys(id, name, qty, freq);
         sequence.add(toy);
 
-        toyName = new String[sequence.size()];
-        toyQty = new int[sequence.size()];
-
-        int i = 0;
-        for (Toys t : sequence) {
-            toyName[i] = t.getName();
-            toyQty[i] = t.getQty();
-            i++;
-        }
     }
 
     public static int getToyId() {
